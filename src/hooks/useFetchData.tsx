@@ -7,10 +7,11 @@ const useFetchData = (fetchFunc: () => Promise<AxiosResponse>) => {
   const getData = async () => {
     try {
       const res = await fetchFunc();
-      if (res.statusText !== "OK") {
+      if (res.statusText === "OK") {
+        setFetchData(res.data.response);
+      } else if (res.statusText === "error") {
         throw new Error("HTTP Error");
       }
-      setFetchData(res.data.response);
     } catch (error) {
       alert(error);
       console.error(
