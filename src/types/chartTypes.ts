@@ -18,7 +18,7 @@ export interface IValueData {
 export interface IToChartProps {
   data: IResData;
   currentParams: string | null;
-  setSearchParams: ({ id: URLSearchParams }: { id: string }) => void;
+  setSearchParams: (id: { id: string }) => void;
 }
 
 export interface IToButtonProps {
@@ -26,4 +26,11 @@ export interface IToButtonProps {
     btnText: string;
     event: () => void;
   };
+}
+
+export interface IToTooltipProps {
+  idData: string;
+  barData: number;
+  areaData: number;
+  timeData: string;
 }

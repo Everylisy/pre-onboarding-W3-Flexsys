@@ -1,6 +1,8 @@
 import type { ApexOptions } from "apexcharts";
 import ApexCharts from "react-apexcharts";
+import { renderToString } from "react-dom/server";
 import type { IToChartProps, IValueData } from "../types/chartTypes";
+import CustomToolTip from "./CustomToolTip";
 
 const Chart = ({ data, currentParams, setSearchParams }: IToChartProps) => {
   const areaData: IValueData[] = Object.entries(data)?.map(
@@ -19,6 +21,7 @@ const Chart = ({ data, currentParams, setSearchParams }: IToChartProps) => {
       fillColor: id === currentParams ? "#f9c60ec4" : "",
     }),
   );
+
   const Times: string[] = Object.keys(data);
   const idArr: string[] = areaData.map((el) => el.id);
 
@@ -66,14 +69,14 @@ const Chart = ({ data, currentParams, setSearchParams }: IToChartProps) => {
       intersect: false,
       enabled: true,
       custom({ series, dataPointIndex }) {
-        return `<div class="custom-tooltip">
-        <h3>${idArr[dataPointIndex]}</h3>
-        <div class="group">
-          <span class="group-bar">Bar: ${series[0][dataPointIndex]}</span>
-          <span class="group-area">Area: ${series[1][dataPointIndex]}</span>
-          <span class="group-time">Date: ${Times[dataPointIndex]}</span>
-        </div>
-      </div>`;
+        return renderToString(
+          <CustomToolTip
+            idData={idArr[dataPointIndex]}
+            barData={series[0][dataPointIndex]}
+            areaData={series[1][dataPointIndex]}
+            timeData={Times[dataPointIndex]}
+          />,
+        );
       },
     },
     grid: {

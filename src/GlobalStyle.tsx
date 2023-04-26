@@ -21,70 +21,53 @@ time, mark, audio, video {
   font: inherit;
   vertical-align: baseline;
 }
+
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure,
 footer, header, hgroup, main, menu, nav, section {
   display: block;
 }
+
 /* HTML5 hidden-attribute fix for newer browsers */
 *[hidden] {
     display: none;
 }
+
 body {
   font-family: "Spoqa Han Sans Neo", "sans-serif";
 }
+
 menu, ol, ul {
   list-style: none;
 }
+
 blockquote, q {
   quotes: none;
 }
+
 blockquote:before, blockquote:after,
 q:before, q:after {
   content: '';
   content: none;
 }
+
 table {
   border-collapse: collapse;
   border-spacing: 0;
 }
+
 * {
   box-sizing: border-box;
 }
+
 body {
   line-height: 1.2;
   background-color: #eff4f7;
 }
+
 a {
   text-decoration:none;
   color:inherit;
-}
-
-// react-apexcharts
-.custom-tooltip {
-  padding: 5px 10px;
-  h3 {
-    font-size: 16px;
-    font-weight: 500;
-    margin-bottom: 5px;
-  }
-}
-.group {
-  display: flex;
-  flex-direction: column;
-  span {
-    margin-bottom: 3px;
-  }
-}
-.group-bar {
-  color: #3f51b5;
-}
-.group-area {
-  color: #9f8b70;
-}
-.group-time {
-  font-style: italic;
-  color: #888;
 }
 `;
 
