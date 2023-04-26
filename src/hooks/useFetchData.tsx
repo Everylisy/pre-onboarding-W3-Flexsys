@@ -7,9 +7,17 @@ const useFetchData = (fetchFunc: () => Promise<AxiosResponse>) => {
   const getData = async () => {
     try {
       const res = await fetchFunc();
-      if (res) setFetchData(res.data.response);
+      if (res.statusText !== "OK") {
+        throw new Error("HTTP Error");
+      }
+      setFetchData(res.data.response);
     } catch (error) {
       alert(error);
+      console.error(
+        "Fetch Error:",
+        error instanceof Error ? error.message : error,
+      );
+      throw error;
     }
   };
 
