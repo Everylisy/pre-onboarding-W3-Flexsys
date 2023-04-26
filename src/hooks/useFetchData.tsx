@@ -7,11 +7,9 @@ const useFetchData = (fetchFunc: () => Promise<AxiosResponse>) => {
   const getData = async () => {
     try {
       const res = await fetchFunc();
-      console.log(res); // 배포 환경에서 확인 후,제거 예정
-      if (res.statusText === "error") {
-        throw new Error("HTTP Error");
-      }
-      if (res) setFetchData(res.data.response);
+      if (res.status === 200) {
+        setFetchData(res.data.response);
+      } else throw new Error("HTTP Error");
     } catch (error) {
       alert(error);
       console.error(
