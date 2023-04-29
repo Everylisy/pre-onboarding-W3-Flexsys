@@ -1,9 +1,8 @@
 import { useSearchParams } from "react-router-dom";
-import styled from "styled-components";
 import { fetchFlexsysData } from "./api/apis";
 import Chart from "./components/Chart";
 import FilterButton from "./components/FilterButton";
-import Layout from "./components/Layout";
+import Layout, { BtnWrapper, ChartWrapper } from "./components/Layout";
 import GlobalStyle from "./GlobalStyle";
 import useFetchData from "./hooks/useFetchData";
 import type { IChartData } from "./types/chartTypes";
@@ -38,7 +37,6 @@ const App = () => {
         })}
       </BtnWrapper>
 
-      {/* todo: fix type error */}
       <ChartWrapper>
         <Chart
           data={chartData}
@@ -51,14 +49,3 @@ const App = () => {
 };
 
 export default App;
-
-const BtnWrapper = styled.div`
-  display: flex;
-  button {
-    margin-right: 5px;
-  }
-`;
-
-const ChartWrapper = styled.div`
-  width: 100%;
-`;

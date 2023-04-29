@@ -29,3 +29,14 @@ const Container = styled.div`
   background-color: #fff;
   padding: 25px 35px 25px 30px;
 `;
+
+export const BtnWrapper = styled.div`
+  display: flex;
+  button {
+    margin-right: 5px;
+  }
+`;
+
+export const ChartWrapper = styled.div`
+  width: 100%;
+`;
