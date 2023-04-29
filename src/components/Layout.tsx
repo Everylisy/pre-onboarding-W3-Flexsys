@@ -24,17 +24,20 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin: auto 0;
+  padding: 25px 35px 25px 30px;
+  min-height: 500px;
   box-shadow: 0px 1px 22px -12px #607d8b;
   background-color: #fff;
-  padding: 25px 35px 25px 30px;
 `;
 
 export const BtnWrapper = styled.div`
+  width: 420px;
   display: flex;
-  button {
-    margin-right: 5px;
-  }
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: baseline;
+  align-content: stretch;
 `;
 
 export const ChartWrapper = styled.div`

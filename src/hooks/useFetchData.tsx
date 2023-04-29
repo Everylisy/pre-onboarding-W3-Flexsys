@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 
 const useFetchData = (fetchFunc: () => Promise<AxiosResponse>) => {
   const [fetchData, setFetchData] = useState([]);
+  const [isFetchCompleted, setIsFetchCompleted] = useState(false);
 
   const getData = async () => {
     try {
@@ -18,13 +19,14 @@ const useFetchData = (fetchFunc: () => Promise<AxiosResponse>) => {
       );
       throw error;
     }
+    setIsFetchCompleted(true);
   };
 
   useEffect(() => {
     getData();
   }, []);
 
-  return fetchData;
+  return { fetchData, isFetchCompleted };
 };
 
 export default useFetchData;

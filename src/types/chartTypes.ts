@@ -2,6 +2,11 @@ export interface IResData {
   [key: string]: IChartData;
 }
 
+export interface IFetchedData {
+  fetchData: IChartData[];
+  isFetchCompleted: boolean;
+}
+
 export interface IChartData {
   id: string;
   value_area: number;

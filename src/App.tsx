@@ -3,12 +3,14 @@ import { fetchFlexsysData } from "./api/apis";
 import Chart from "./components/Chart";
 import FilterButton from "./components/FilterButton";
 import Layout, { BtnWrapper, ChartWrapper } from "./components/Layout";
+import LoadingUI from "./components/LoadingUI";
 import GlobalStyle from "./GlobalStyle";
 import useFetchData from "./hooks/useFetchData";
-import type { IChartData } from "./types/chartTypes";
+import type { IFetchedData } from "./types/chartTypes";
 
 const App = () => {
-  const chartData: IChartData[] = useFetchData(fetchFlexsysData);
+  const { fetchData: chartData, isFetchCompleted }: IFetchedData =
+    useFetchData(fetchFlexsysData);
   const [searchParams, setSearchParams] = useSearchParams();
   const currentParams = searchParams.get("id");
 
@@ -22,28 +24,33 @@ const App = () => {
   return (
     <Layout>
       <GlobalStyle />
+      {!isFetchCompleted && <LoadingUI />}
 
-      <BtnWrapper>
-        {uniqueIdArr.map((id) => {
-          return (
-            <FilterButton
-              key={id}
-              btnOption={{
-                btnText: id,
-                event: () => handleButtonFilter(id),
-              }}
+      {isFetchCompleted && (
+        <>
+          <BtnWrapper>
+            {uniqueIdArr.map((id) => {
+              return (
+                <FilterButton
+                  key={id}
+                  btnOption={{
+                    btnText: id,
+                    event: () => handleButtonFilter(id),
+                  }}
+                />
+              );
+            })}
+          </BtnWrapper>
+
+          <ChartWrapper>
+            <Chart
+              data={chartData}
+              currentParams={currentParams}
+              setSearchParams={setSearchParams}
             />
-          );
-        })}
-      </BtnWrapper>
-
-      <ChartWrapper>
-        <Chart
-          data={chartData}
-          currentParams={currentParams}
-          setSearchParams={setSearchParams}
-        />
-      </ChartWrapper>
+          </ChartWrapper>
+        </>
+      )}
     </Layout>
   );
 };
