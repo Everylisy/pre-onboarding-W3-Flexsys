@@ -16,7 +16,7 @@ export interface IValueData {
 }
 
 export interface IToChartProps {
-  data: IResData;
+  data: IChartData[];
   currentParams: string | null;
   setSearchParams: (id: { id: string }) => void;
 }
